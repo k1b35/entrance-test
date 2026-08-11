@@ -1,0 +1,13 @@
+{
+  "event_id": "e-1001",
+  "gate_id": "gate-2",
+  "camera_id": "cam-2a",
+  "captured_at": "2026-07-31T08:52:14Z",
+  "frame_uri": "file://demo/frames/e-1001.png",
+  "metadata": {
+    "direction": "in",
+    "illumination": "normal",
+    "edge_node": "edge-gate-2",
+    "network": "online"
+  }
+}

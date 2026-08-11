@@ -1,0 +1,77 @@
+{
+  "_comment": [
+    "МАНИФЕСТ СЦЕНЫ — ЭТО ЗАГЛУШКА. В целевой системе такого файла не существует.",
+    "Здесь описано, что 'видит' камера на каждом синтетическом кадре, а mock-модели",
+    "(poc/cv.py, poc/embedder.py) переводят это в те же три числа, которые в проде",
+    "выдают детектор, оценщик качества и liveness-модель.",
+    "",
+    "capture_fidelity — косинусное сходство пробы с эталонным шаблоном. В проде это",
+    "результат работы ArcFace на выровненном кропе; здесь — управляемый параметр,",
+    "благодаря которому пороги политики можно проверить детерминированными тестами."
+  ],
+  "frames": {
+    "__default__": {
+      "person_id": null,
+      "faces_in_frame": 0,
+      "quality_score": 0.0,
+      "liveness_score": 0.0
+    },
+    "e-1001.png": {
+      "_scenario": "happy path: хорошие условия, уверенное совпадение",
+      "person_id": "emp-4821",
+      "faces_in_frame": 1,
+      "quality_score": 0.88,
+      "liveness_score": 0.95,
+      "capture_fidelity": 0.81
+    },
+    "e-1002.png": {
+      "_scenario": "маска и контровый свет: кадр непригоден для матчинга",
+      "person_id": "emp-4822",
+      "faces_in_frame": 1,
+      "quality_score": 0.34,
+      "liveness_score": 0.61,
+      "capture_fidelity": 0.55
+    },
+    "e-1003.png": {
+      "_scenario": "presentation attack: фото сотрудника с экрана телефона",
+      "person_id": "emp-5150",
+      "faces_in_frame": 1,
+      "quality_score": 0.82,
+      "liveness_score": 0.12,
+      "capture_fidelity": 0.86,
+      "spoof_kind": "screen_replay"
+    },
+    "e-1004.png": {
+      "_scenario": "два близких кандидата: тусклый свет и поворот головы",
+      "person_id": "emp-7310",
+      "faces_in_frame": 1,
+      "quality_score": 0.58,
+      "liveness_score": 0.9,
+      "capture_fidelity": 0.63
+    },
+    "e-1005.png": {
+      "_scenario": "offline + отозванный доступ: кеш об отзыве уже знает",
+      "person_id": "emp-3009",
+      "faces_in_frame": 1,
+      "quality_score": 0.86,
+      "liveness_score": 0.93,
+      "capture_fidelity": 0.84
+    },
+    "e-1006.png": {
+      "_scenario": "offline + устаревший кеш у действующего сотрудника",
+      "person_id": "emp-6001",
+      "faces_in_frame": 1,
+      "quality_score": 0.87,
+      "liveness_score": 0.94,
+      "capture_fidelity": 0.83
+    },
+    "e-1007.png": {
+      "_scenario": "два лица в кадре: подозрение на проход паровозиком",
+      "person_id": "emp-6002",
+      "faces_in_frame": 2,
+      "quality_score": 0.84,
+      "liveness_score": 0.92,
+      "capture_fidelity": 0.82
+    }
+  }
+}

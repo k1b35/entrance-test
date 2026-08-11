@@ -1,0 +1,57 @@
+{
+  "_comment": [
+    "Демо-справочник сотрудников. Реальных биометрических данных здесь нет и быть не должно:",
+    "шаблоны генерируются детерминированно из employee_id (см. poc/embedder.py).",
+    "Поля similar_to/similarity задают пару похожих людей — это нужно, чтобы в демо был",
+    "честный трудный случай с малым отрывом от второго кандидата, а не искусственный.",
+    "status_changed_minutes_ago моделирует, насколько давно изменился статус доступа:",
+    "edge-кеш, снятый позже этого момента, изменение уже видит, снятый раньше — ещё нет."
+  ],
+  "employees": [
+    {
+      "employee_id": "emp-4821",
+      "display_name": "Сотрудник A (демо)",
+      "status": "active"
+    },
+    {
+      "employee_id": "emp-4822",
+      "display_name": "Сотрудник B (демо, умеренно похож на A)",
+      "status": "active",
+      "similar_to": "emp-4821",
+      "similarity": 0.79
+    },
+    {
+      "employee_id": "emp-7310",
+      "display_name": "Сотрудник C (демо)",
+      "status": "active"
+    },
+    {
+      "employee_id": "emp-7311",
+      "display_name": "Сотрудник D (демо, близнец C)",
+      "status": "active",
+      "similar_to": "emp-7310",
+      "similarity": 0.95
+    },
+    {
+      "employee_id": "emp-5150",
+      "display_name": "Сотрудник E (демо, цель spoof-атаки)",
+      "status": "active"
+    },
+    {
+      "employee_id": "emp-6001",
+      "display_name": "Сотрудник F (демо)",
+      "status": "active"
+    },
+    {
+      "employee_id": "emp-6002",
+      "display_name": "Сотрудник G (демо)",
+      "status": "active"
+    },
+    {
+      "employee_id": "emp-3009",
+      "display_name": "Сотрудник H (демо, доступ отозван вчера)",
+      "status": "revoked",
+      "status_changed_minutes_ago": 1440
+    }
+  ]
+}
