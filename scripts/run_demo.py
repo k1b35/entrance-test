@@ -19,7 +19,9 @@ from poc.audit import AuditLog  # noqa: E402
 from poc.service import AccessService  # noqa: E402
 
 EVENTS_DIR = REPO_ROOT / "demo" / "events"
-AUDIT_PATH = REPO_ROOT / "var" / "audit_log.jsonl"
+# Демо пишет в отдельный файл, чтобы не «занять» event_id для HTTP-сервиса:
+# иначе idempotency честно вернёт noop на первый же curl, и это собьёт с толку.
+AUDIT_PATH = REPO_ROOT / "var" / "demo_audit_log.jsonl"
 
 SCENARIOS = {
     "e-1001": "happy path — хорошие условия, уверенное совпадение",
@@ -37,11 +39,11 @@ ICON = {"allow": "[OPEN ]", "manual_review": "[GUARD]", "deny": "[DENY ]"}
 def main() -> int:
     if AUDIT_PATH.exists():
         AUDIT_PATH.unlink()  # чистый прогон демо; в проде audit log не удаляется никогда
-    queue_path = AUDIT_PATH.parent / "review_queue.jsonl"
+    queue_path = AUDIT_PATH.parent / "demo_review_queue.jsonl"
     if queue_path.exists():
         queue_path.unlink()
 
-    service = AccessService(audit=AuditLog(AUDIT_PATH))
+    service = AccessService(audit=AuditLog(AUDIT_PATH), review_queue_path=queue_path)
     opened = 0
     to_guard = 0
 
